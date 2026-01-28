@@ -1,0 +1,6 @@
+:root{--accent:#f59e0b;}
+#bg-layer{position:fixed; inset:0; z-index:-1; background:
+radial-gradient(900px 700px at 20% 15%, rgba(245,158,11,0.18), transparent 55%),
+radial-gradient(900px 700px at 80% 25%, rgba(234,179,8,0.14), transparent 55%),
+linear-gradient(160deg,#2a1b08,#3a2a10);}
+.badge{font-size:.78rem;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(148,163,184,.25);color:#e2e8f0;}

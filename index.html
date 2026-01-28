@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Randify — Multi Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Randify: fast, private, free generators. Create usernames, passwords, UUIDs, color palettes, lorem ipsum and more — locally in your browser.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="index.html">
+
+<meta property="og:title" content="Randify — Multi Generator">
+<meta property="og:description" content="Fast, private, free generators — all running locally in your browser.">
+<meta property="og:type" content="website">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<canvas id="background"></canvas>
+
+<header class="topbar">
+  <div class="logo">Randify</div>
+
+  <nav class="nav">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#features" data-i18n="nav_features">Features</a>
+  </nav>
+
+  <div class="language">
+    <select id="langSelect" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="hi">हिन्दी</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+      <option value="bn">বাংলা</option>
+      <option value="ru">Русский</option>
+      <option value="pt">Português</option>
+      <option value="id">Bahasa Indonesia</option>
+    </select>
+  </div>
+</header>
+
+<main id="main" class="page">
+
+  <section class="hero">
+    <h1 data-i18n="hero_title">Randify Generators</h1>
+    <p data-i18n="hero_text">Explore our powerful and fun generators. Click any to start creating instantly!</p>
+    <div class="hero-note" data-i18n="hero_note">Fast • Private • Free</div>
+  </section>
+
+  <section class="generators-grid" aria-label="Generators">
+    <a class="gen-card gen-link" data-page="generators/username.html" href="generators/username.html">
+      <h2 data-i18n="gen_username_title">Username Generator</h2>
+      <p data-i18n="gen_username_desc">Create unique and usable usernames.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/password.html" href="generators/password.html">
+      <h2 data-i18n="gen_password_title">Password Generator</h2>
+      <p data-i18n="gen_password_desc">Generate strong passwords and check strength.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/email.html" href="generators/email.html">
+      <h2 data-i18n="gen_email_title">Email Name Generator</h2>
+      <p data-i18n="gen_email_desc">Create professional email name ideas.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/fakeprofile.html" href="generators/fakeprofile.html">
+      <h2 data-i18n="gen_fake_title">Test Profile Generator</h2>
+      <p data-i18n="gen_fake_desc">Generate fictional profiles for UI/testing.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/loremipsum.html" href="generators/loremipsum.html">
+      <h2 data-i18n="gen_lorem_title">Lorem Ipsum Generator</h2>
+      <p data-i18n="gen_lorem_desc">Create placeholder text.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/namepicker.html" href="generators/namepicker.html">
+      <h2 data-i18n="gen_picker_title">Name Picker</h2>
+      <p data-i18n="gen_picker_desc">Pick random names or items.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/colorpalette.html" href="generators/colorpalette.html">
+      <h2 data-i18n="gen_color_title">Color Palette Generator</h2>
+      <p data-i18n="gen_color_desc">Create modern color palettes.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/uuid.html" href="generators/uuid.html">
+      <h2 data-i18n="gen_uuid_title">UUID / GUID Generator</h2>
+      <p data-i18n="gen_uuid_desc">Generate unique identifiers.</p>
+    </a>
+
+    <a class="gen-card gen-link" data-page="generators/randomnumber.html" href="generators/randomnumber.html">
+      <h2 data-i18n="gen_random_title">Random Number & Dice</h2>
+      <p data-i18n="gen_random_desc">Generate numbers or roll dice.</p>
+    </a>
+  </section>
+
+  <!-- Extra content (good for SEO / AdSense) -->
+  <section class="seo-note">
+    <h2 data-i18n="seo_title">Simple generators, no sign-up</h2>
+    <p data-i18n="seo_text">
+      Randify helps you generate common things instantly — passwords, usernames, UUIDs and more.
+      Everything runs locally in your browser for speed and privacy.
+    </p>
+  </section>
+
+  <section class="about" id="about">
+    <h2 data-i18n="about_title">About Randify</h2>
+    <p data-i18n="about_text">
+      Randify is a suite of simple but powerful generators designed for creators, developers, designers, gamers and everyone.
+      Everything runs locally — nothing is stored online.
+    </p>
+  </section>
+
+  <section class="features" id="features">
+    <h2 data-i18n="features_title">Features</h2>
+    <ul>
+      <li data-i18n="f1">Fast, local generation</li>
+      <li data-i18n="f2">Useful tools for real scenarios</li>
+      <li data-i18n="f3">Modern, responsive interface</li>
+      <li data-i18n="f4">No accounts, no tracking</li>
+      <li data-i18n="f5">Free and easy to use</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p data-i18n="footer">© Randify — Private, fast, free | All generators run locally</p>
+
+  <p class="footer-links">
+    <a class="legal-link" href="legal/privacy.html">Privacy</a>
+    <a class="legal-link" href="legal/terms.html">Terms</a>
+    <a class="legal-link" href="legal/disclaimer.html">Disclaimer</a>
+  </p>
+</footer>
+
+<script src="shared/i18n.js"></script>
+<script src="shared/lang.js"></script>
+<script src="shared/background-home.js"></script>
+
+</body>
+</html>

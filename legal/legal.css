@@ -1,0 +1,129 @@
+/* /legal/legal.css */
+/* Dark legal pages, consistent with Randify */
+
+:root{
+  --legal-bg1:#0b1220;
+  --legal-bg2:#172554;
+  --card: rgba(255,255,255,0.09);
+  --border: rgba(255,255,255,0.12);
+  --text: #f1f5f9;
+  --muted:#cbd5e1;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  background: linear-gradient(160deg, var(--legal-bg1), var(--legal-bg2));
+}
+
+/* keep RTL compatibility */
+body.rtl { direction: rtl; }
+
+.legal-wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 34px 18px 70px;
+}
+
+.legal-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom: 18px;
+}
+
+.legal-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight: 800;
+  letter-spacing:0.3px;
+  font-size: 1.3rem;
+}
+
+.legal-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.legal-actions a{
+  text-decoration:none;
+  color: var(--text);
+  padding:10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(148,163,184,0.22);
+}
+.legal-actions a:hover{ background: rgba(255,255,255,0.12); }
+
+.legal-actions select{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(148,163,184,0.35);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  outline:none;
+}
+.legal-actions select option{ color:#0b1220; }
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 26px 22px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+}
+
+.card h1{
+  margin:0 0 10px;
+  font-size: 2rem;
+  letter-spacing: -0.4px;
+}
+.card p{
+  margin: 12px 0;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+.card h2{
+  margin: 22px 0 10px;
+  font-size: 1.25rem;
+}
+.card ul{
+  margin: 10px 0 10px 20px;
+  color: var(--muted);
+  line-height:1.75;
+}
+.card li{ margin: 8px 0; }
+
+.notice{
+  margin-top: 14px;
+  padding: 14px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(148,163,184,0.18);
+  color: #e2e8f0;
+  line-height: 1.7;
+}
+
+.footer{
+  text-align:center;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 520px){
+  .legal-wrap{ padding: 22px 14px 60px; }
+  .card{ padding: 20px 16px; border-radius: 20px; }
+  .card h1{ font-size: 1.65rem; }
+}

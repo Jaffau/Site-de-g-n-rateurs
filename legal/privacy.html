@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Randify — Privacy Policy</title>
+
+<style>
+  /* ✅ HARD FIX: force dark background even if no CSS loads */
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;
+    color:#f1f5f9;
+    background:#0b1220; /* fallback if canvas fails */
+    overflow-x:hidden;
+  }
+
+  /* ✅ same vibe as homepage */
+  #bg{
+    position:fixed; inset:0; z-index:-1;
+    background: linear-gradient(160deg,#10243a,#1e2d48);
+  }
+
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:28px 16px 70px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    font-weight:800;
+    font-size:1.5rem;
+    letter-spacing:.3px;
+  }
+
+  .actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-end;
+  }
+
+  a.btn{
+    text-decoration:none;
+    color:#f1f5f9;
+    padding:10px 12px;
+    border-radius:12px;
+    background: rgba(255,255,255,0.10);
+    border:1px solid rgba(148,163,184,0.25);
+  }
+  a.btn:hover{ background: rgba(255,255,255,0.14); }
+
+  select{
+    background: rgba(255,255,255,0.10);
+    border:1px solid rgba(148,163,184,0.35);
+    color:#f1f5f9;
+    padding:10px 12px;
+    border-radius:12px;
+    outline:none;
+  }
+  select option{ color:#0b1220; }
+
+  /* ✅ Card is opaque enough to be readable on any background */
+  .card{
+    background: rgba(40,55,75,0.92);
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:24px;
+    padding:26px 22px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.45);
+  }
+
+  h1{font-size:2rem; letter-spacing:-0.4px; margin-bottom:10px;}
+  h2{font-size:1.2rem; margin:22px 0 10px;}
+  p, li{color:#e2e8f0; line-height:1.75; font-size:1.02rem;}
+  ul{margin:10px 0 10px 20px;}
+  .notice{
+    margin-top:14px;
+    padding:14px;
+    border-radius:16px;
+    background: rgba(255,255,255,0.07);
+    border:1px solid rgba(148,163,184,0.18);
+    color:#e2e8f0;
+    line-height:1.7;
+  }
+  .footer{
+    text-align:center;
+    color:#cbd5e1;
+    font-size:.95rem;
+    opacity:.9;
+    margin-top:6px;
+  }
+
+  @media(max-width:520px){
+    .card{padding:20px 16px; border-radius:20px;}
+    h1{font-size:1.65rem;}
+  }
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <div class="brand">Randify</div>
+    <div class="actions">
+      <a id="homeLink" class="btn" href="../index.html">Home</a>
+      <select id="langSelect" aria-label="Language">
+        <option value="en">English</option><option value="zh">中文</option><option value="hi">हिन्दी</option>
+        <option value="es">Español</option><option value="fr">Français</option><option value="ar">العربية</option>
+        <option value="bn">বাংলা</option><option value="ru">Русский</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option>
+      </select>
+    </div>
+  </header>
+
+  <section class="card">
+    <h1>Privacy Policy</h1>
+
+    <p>
+      Randify is designed to be private by default. All generators run locally in your browser.
+      We do not collect or store the content you generate.
+    </p>
+
+    <h2>What we store</h2>
+    <p>
+      We do not ask you to create an account. We do not store generated passwords, usernames, UUIDs, or any tool output.
+      Your language preference may be saved locally in your browser (localStorage).
+    </p>
+
+    <h2>Cookies & ads</h2>
+    <p>
+      Randify does not require cookies to function. If you enable advertising (e.g., Google AdSense),
+      third-party partners may use cookies to serve ads according to their policies.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you add a contact email on your website later, you can reference it here.
+    </p>
+
+    <div class="notice">
+      Template page: adjust to match your final hosting and advertising setup.
+    </div>
+  </section>
+
+  <div class="footer">© Randify — Private, fast, free | All generators run locally</div>
+</main>
+
+<script src="../shared/lang.js"></script>
+<script src="../shared/i18n.js"></script>
+<script>
+  // keep lang in links even if i18n texts aren't used yet
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const urlLang = params.get("lang");
+    const saved = localStorage.getItem("randifyLang");
+    const lang = urlLang || saved || "en";
+    localStorage.setItem("randifyLang", lang);
+
+    const sel = document.getElementById("langSelect");
+    if (sel) sel.value = lang;
+
+    const home = document.getElementById("homeLink");
+    if(home){
+      const base = "../index.html";
+      home.href = base + "?lang=" + encodeURIComponent(lang);
+    }
+
+    sel && sel.addEventListener("change", ()=>{
+      const l = sel.value;
+      localStorage.setItem("randifyLang", l);
+      const u = new URL(location.href);
+      u.searchParams.set("lang", l);
+      location.href = u.toString();
+    });
+
+    if(lang === "ar") document.body.dir = "rtl";
+  })();
+</script>
+</body>
+</html>
