@@ -1,5 +1,23 @@
 /* /generators/generators-base.css */
 
+/* ✅ IMPORTANT: put generator background layers OUT of normal flow */
+#particles{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display:block;
+}
+
+/* (bg-layer is already fixed in theme css, but keep it safe) */
+#bg-layer{
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+
 /* Hard override: generator pages must NOT inherit huge spacing from /style.css */
 .page{
   max-width:1100px !important;
