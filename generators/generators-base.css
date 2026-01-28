@@ -1,13 +1,16 @@
-/* Page layout (compact, no big empty space) */
+/* /generators/generators-base.css */
+
+/* Hard override: generator pages must NOT inherit huge spacing from /style.css */
 .page{
-  max-width:1100px;
-  margin:auto;
-  padding:22px 20px 60px;
-  display:flex;
-  flex-direction:column;
-  gap:22px;
+  max-width:1100px !important;
+  margin:auto !important;
+  padding:22px 20px 60px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:22px !important;
 }
 
+/* Header card */
 .header-card{
   background:rgba(255,255,255,0.09);
   border:1px solid rgba(255,255,255,0.12);
@@ -19,6 +22,7 @@
 .header-card h1{font-size:2.05rem; margin-bottom:8px; letter-spacing:-0.4px;}
 .header-card p{color:#cbd5e1; line-height:1.65; font-size:1.02rem;}
 
+/* Tool layout */
 .tool{
   display:grid;
   grid-template-columns:1.1fr 0.9fr;
@@ -28,6 +32,7 @@
   .tool{grid-template-columns:1fr;}
 }
 
+/* Panels */
 .panel{
   background:rgba(40,55,75,0.92);
   border:1px solid rgba(255,255,255,0.10);
@@ -37,6 +42,7 @@
 }
 .panel h2{font-size:1.25rem; margin-bottom:14px;}
 
+/* Controls */
 .controls{display:flex; flex-direction:column; gap:14px;}
 .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
 label{color:#e2e8f0; font-size:0.95rem;}
@@ -77,6 +83,7 @@ button.secondary{
   border:1px solid rgba(255,255,255,0.14);
 }
 
+/* Output */
 .output{display:flex; flex-direction:column; gap:12px;}
 .output-box{
   padding:14px; border-radius:16px;
@@ -86,15 +93,7 @@ button.secondary{
   font-size:1.05rem; word-break:break-all;
 }
 
-.meter{
-  height:12px; border-radius:999px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(148,163,184,0.22);
-  overflow:hidden;
-}
-.meter > div{height:100%; width:0%; background:#22c55e; transition:width .2s ease;}
-.strength-line{display:flex; justify-content:space-between; color:#e2e8f0; font-size:0.95rem;}
-
+/* Other generators */
 .other{margin-top:4px;}
 .other h2{font-size:1.25rem; margin-bottom:14px; color:#fff;}
 .other-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px;}
@@ -105,7 +104,7 @@ button.secondary{
   transition:transform .2s ease, background .2s ease;
 }
 .other a:hover{transform:translateY(-4px); background:rgba(59,130,246,0.26);}
-.other .t{font-weight:750;}
+.other .t{font-weight:750; color:#f1f5f9;}
 .other .d{color:#cbd5e1; font-size:0.92rem; margin-top:6px; line-height:1.4;}
 
 .notice{
