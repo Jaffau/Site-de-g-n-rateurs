@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Randify — Username Generator</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="generators-base.css">
+<link rel="stylesheet" href="themes/username.css">
+</head>
+
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <div class="logo">
+    Randify <span class="badge" data-i18n="un_badge">Username</span>
+  </div>
+
+  <nav class="nav">
+    <a id="homeLink" href="../index.html" data-i18n="nav_home">Home</a>
+  </nav>
+
+  <div class="language">
+    <select id="langSelect" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="hi">हिन्दी</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+      <option value="bn">বাংলা</option>
+      <option value="ru">Русский</option>
+      <option value="pt">Português</option>
+      <option value="id">Bahasa Indonesia</option>
+    </select>
+  </div>
+</header>
+
+<main class="page">
+
+  <section class="header-card">
+    <h1 data-i18n="un_title">Username Generator</h1>
+    <p data-i18n="un_subtitle">
+      Generate catchy usernames. Choose a style and length, then copy your favorite.
+    </p>
+  </section>
+
+  <section class="tool" aria-label="Username tool">
+    <!-- SETTINGS -->
+    <div class="panel">
+      <h2 data-i18n="common_settings">Settings</h2>
+
+      <div class="controls">
+        <div class="row" style="width:100%;">
+          <label for="style" data-i18n="un_style">Style</label>
+          <select id="style">
+            <option value="modern" data-i18n="un_style_modern">Modern</option>
+            <option value="gamer" data-i18n="un_style_gamer">Gamer</option>
+            <option value="cute" data-i18n="un_style_cute">Cute</option>
+            <option value="pro" data-i18n="un_style_pro">Professional</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="length" data-i18n="un_length">Length</label>
+          <input id="length" type="number" min="4" max="20" value="12">
+          <span class="small">4–20</span>
+        </div>
+
+        <div class="row">
+          <div class="switch">
+            <input id="numbers" type="checkbox" checked>
+            <label for="numbers" data-i18n="un_include_numbers">Include numbers</label>
+          </div>
+
+          <div class="switch">
+            <input id="underscore" type="checkbox">
+            <label for="underscore" data-i18n="un_include_underscore">Include underscore</label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="generateBtn" type="button" data-i18n="common_generate">Generate</button>
+          <button id="copyBtn" type="button" class="secondary" data-i18n="common_copy">Copy</button>
+          <button id="clearBtn" type="button" class="secondary" data-i18n="common_clear">Clear</button>
+        </div>
+
+        <div class="hint" data-i18n="un_output_hint">
+          Tip: click Generate multiple times for variations.
+        </div>
+
+        <div class="hint" data-i18n="common_privacy">
+          Everything runs locally in your browser. Nothing is sent or stored online.
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="panel">
+      <h2 data-i18n="common_result">Result</h2>
+
+      <div class="output">
+        <div id="out" class="output-box" aria-live="polite">—</div>
+
+        <div class="notice" id="ideasBox">
+          <div class="small" style="margin-bottom:8px;">Quick picks (click to copy):</div>
+          <div id="ideas" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER GENERATORS (ALL except username) -->
+  <section class="other" aria-label="Other generators">
+    <h2 data-i18n="other_generators">Other generators</h2>
+
+    <div class="other-grid">
+      <a class="gen-link" data-page="password.html" href="password.html">
+        <div class="t" data-i18n="gen_password_title">Password Generator</div>
+        <div class="d" data-i18n="gen_password_desc">Generate strong passwords and check strength.</div>
+      </a>
+
+      <a class="gen-link" data-page="email.html" href="email.html">
+        <div class="t" data-i18n="gen_email_title">Email Name Generator</div>
+        <div class="d" data-i18n="gen_email_desc">Create professional email name ideas.</div>
+      </a>
+
+      <a class="gen-link" data-page="fakeprofile.html" href="fakeprofile.html">
+        <div class="t" data-i18n="gen_fake_title">Test Profile Generator</div>
+        <div class="d" data-i18n="gen_fake_desc">Generate fictional profiles for UI/testing.</div>
+      </a>
+
+      <a class="gen-link" data-page="loremipsum.html" href="loremipsum.html">
+        <div class="t" data-i18n="gen_lorem_title">Lorem Ipsum Generator</div>
+        <div class="d" data-i18n="gen_lorem_desc">Create placeholder text.</div>
+      </a>
+
+      <a class="gen-link" data-page="namepicker.html" href="namepicker.html">
+        <div class="t" data-i18n="gen_picker_title">Name Picker</div>
+        <div class="d" data-i18n="gen_picker_desc">Pick random names or items.</div>
+      </a>
+
+      <a class="gen-link" data-page="colorpalette.html" href="colorpalette.html">
+        <div class="t" data-i18n="gen_color_title">Color Palette Generator</div>
+        <div class="d" data-i18n="gen_color_desc">Create modern color palettes.</div>
+      </a>
+
+      <a class="gen-link" data-page="uuid.html" href="uuid.html">
+        <div class="t" data-i18n="gen_uuid_title">UUID / GUID Generator</div>
+        <div class="d" data-i18n="gen_uuid_desc">Generate unique identifiers.</div>
+      </a>
+
+      <a class="gen-link" data-page="randomnumber.html" href="randomnumber.html">
+        <div class="t" data-i18n="gen_random_title">Random Number & Dice</div>
+        <div class="d" data-i18n="gen_random_desc">Generate numbers or roll dice.</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p data-i18n="footer">© Randify — Private, fast, free | All generators run locally</p>
+</footer>
+
+<script src="../shared/i18n.js"></script>
+<script src="../shared/lang.js"></script>
+<script src="../shared/background-generator.js"></script>
+
+<script>
+/* ============================
+   USERNAME GENERATOR (local)
+============================ */
+
+const out = document.getElementById("out");
+const ideas = document.getElementById("ideas");
+
+const styleEl = document.getElementById("style");
+const lengthEl = document.getElementById("length");
+const numbersEl = document.getElementById("numbers");
+const underscoreEl = document.getElementById("underscore");
+
+const generateBtn = document.getElementById("generateBtn");
+const copyBtn = document.getElementById("copyBtn");
+const clearBtn = document.getElementById("clearBtn");
+
+function randInt(max){
+  const a = new Uint32Array(1);
+  crypto.getRandomValues(a);
+  return a[0] % max;
+}
+function pick(arr){ return arr[randInt(arr.length)]; }
+
+const WORDS = {
+  modern: {
+    a: ["neo","byte","zen","nova","pixel","flux","orbit","luna","aero","echo","pulse","vivid","spark","alpha","drift","aura","quant"],
+    b: ["wave","forge","link","core","dash","node","craft","hub","studio","field","scope","shift","mint","works","lab","verse","point"]
+  },
+  gamer: {
+    a: ["shadow","blaze","raven","viper","storm","ember","phantom","venom","frost","skull","sniper","rogue","reaper","wrath","dragon","hunter","nexus"],
+    b: ["king","queen","slayer","strike","clutch","legend","noob","master","boss","squad","mode","arena","gg","crit","combo","rank","carry"]
+  },
+  cute: {
+    a: ["bunny","mochi","peach","kitty","panda","chibi","bubble","cocoa","mango","tofu","daisy","lily","sunny","straw","berry","pinky","cloud"],
+    b: ["sparkle","snuggle","giggle","beans","cupcake","pops","kisses","sprout","puff","bloom","treat","smile","magic","dream","honey","kiss","star"]
+  },
+  pro: {
+    a: ["alex","sam","jordan","taylor","casey","morgan","jamie","chris","drew","pat","lee","kim","dev","design","studio","brand","team"],
+    b: ["official","work","mail","desk","hq","group","agency","digital","creative","labs","consult","studio","ops","support","co","services","global"]
+  }
+};
+
+function buildBase(style){
+  const set = WORDS[style] || WORDS.modern;
+  let base = pick(set.a) + pick(set.b);
+
+  // Small chance to camelCase
+  if (randInt(4) === 0) {
+    base = base.charAt(0).toUpperCase() + base.slice(1);
+  }
+  return base;
+}
+
+function decorate(name){
+  let s = name;
+
+  if (underscoreEl.checked && randInt(3) === 0) {
+    // Insert underscore between chunks if possible
+    const splitAt = Math.max(2, Math.min(s.length - 2, 3 + randInt(Math.min(6, s.length - 3))));
+    s = s.slice(0, splitAt) + "_" + s.slice(splitAt);
+  }
+
+  if (numbersEl.checked && randInt(2) === 0) {
+    const n = 10 + randInt(90);
+    s = s + n;
+  }
+
+  return s;
+}
+
+function fitLength(str, target){
+  if (str.length === target) return str;
+  if (str.length > target) return str.slice(0, target);
+
+  // pad smartly
+  const pads = ["x","z","_", "1","7"];
+  while (str.length < target) {
+    const add = pads[randInt(pads.length)];
+    // avoid adding underscore if option disabled
+    if (add === "_" && !underscoreEl.checked) continue;
+    if ((add === "1" || add === "7") && !numbersEl.checked) continue;
+    str += add;
+  }
+  return str;
+}
+
+function generateOne(){
+  const style = styleEl.value;
+  let len = parseInt(lengthEl.value, 10);
+  if (Number.isNaN(len)) len = 12;
+  len = Math.max(4, Math.min(20, len));
+  lengthEl.value = len;
+
+  let u = buildBase(style);
+  u = decorate(u);
+
+  // Normalize (no spaces)
+  u = u.replace(/\s+/g, "");
+
+  // If underscore not allowed, remove underscores
+  if (!underscoreEl.checked) u = u.replace(/_/g, "");
+
+  // If numbers not allowed, remove digits
+  if (!numbersEl.checked) u = u.replace(/[0-9]/g, "");
+
+  // Fit final length
+  u = fitLength(u, len);
+
+  // Extra safety: if empty for some reason
+  if (!u) u = "user" + (10 + randInt(90));
+  return u;
+}
+
+function renderIdeas(list){
+  ideas.innerHTML = "";
+  list.forEach((txt) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "secondary";
+    b.style.textAlign = "left";
+    b.style.padding = "12px 14px";
+    b.style.borderRadius = "14px";
+    b.style.width = "100%";
+    b.style.border = "1px solid rgba(255,255,255,0.14)";
+    b.style.background = "rgba(255,255,255,0.08)";
+    b.style.color = "#f1f5f9";
+    b.textContent = txt;
+
+    b.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(txt); } catch {}
+      out.textContent = txt;
+    });
+
+    ideas.appendChild(b);
+  });
+}
+
+function generate(){
+  const main = generateOne();
+  out.textContent = main;
+
+  const list = [];
+  while (list.length < 6) {
+    const v = generateOne();
+    if (!list.includes(v)) list.push(v);
+  }
+  renderIdeas(list);
+}
+
+async function copyMain(){
+  const txt = out.textContent || "";
+  if (!txt || txt === "—") return;
+  try{
+    await navigator.clipboard.writeText(txt);
+  } catch {}
+}
+
+function clearAll(){
+  out.textContent = "—";
+  ideas.innerHTML = "";
+}
+
+generateBtn.addEventListener("click", generate);
+copyBtn.addEventListener("click", copyMain);
+clearBtn.addEventListener("click", clearAll);
+
+// init
+generate();
+</script>
+</body>
+</html>
